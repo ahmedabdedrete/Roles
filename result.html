@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Recommended Role</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+  <div class="result-container">
+    <h1>Result</h1>
+    <p id="result-text"></p>
+    <div id="answer-summary"></div>
+    <button onclick="downloadPDF()">Download PDF</button>
+  </div>
+
+  <script>
+    const userName = localStorage.getItem("quizUserName") || "";
+    const answers = JSON.parse(localStorage.getItem("quizAnswers") || "[]");
+    const role = localStorage.getItem("quizRole") || "N/A";
+
+    const roles = [
+      "Hardware & Embedded Systems",
+      "AI Developer – Facial Recognition",
+      "AI Developer – Voice Recognition",
+      "Web Developer",
+      "Mobile App Developer",
+      "System Integrator & Tester"
+    ];
+
+    const questions = Array(6).fill().map((_, i) =>
+      Array.from({ length: 10 }, (_, j) => `${j + 1}. Q${i * 10 + j + 1}`)
+    );
+
+    document.getElementById("result-text").textContent = `${userName}, your recommended role is: ${role}`;
+
+    const summary = document.getElementById("answer-summary");
+    roles.forEach((r, i) => {
+      const group = document.createElement("div");
+      group.innerHTML = `<h3>${r}</h3>`;
+      questions[i].forEach((q, j) => {
+        const qIndex = i * 10 + j;
+        const answer = answers[qIndex] === "1" ? "Yes" : "No";
+        group.innerHTML += `<p>${q}: ${answer}</p>`;
+      });
+      summary.appendChild(group);
+    });
+
+    function downloadPDF() {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+      let y = 10;
+      doc.setFontSize(12);
+      doc.text(`Name: ${userName}`, 10, y);
+      y += 10;
+      doc.text(`Recommended Role: ${role}`, 10, y);
+      y += 10;
+      roles.forEach((r, i) => {
+        doc.text(`${r}`, 10, y);
+        y += 8;
+        questions[i].forEach((q, j) => {
+          const qIndex = i * 10 + j;
+          const answer = answers[qIndex] === "1" ? "Yes" : "No";
+          doc.text(`- ${q}: ${answer}`, 12, y);
+          y += 7;
+          if (y > 270) {
+            doc.addPage();
+            y = 10;
+          }
+        });
+        y += 5;
+      });
+      doc.save(`${userName}_Role_Recommendation.pdf`);
+    }
+  </script>
+</body>
+</html>

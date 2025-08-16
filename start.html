@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project Selection</title>
+  
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+  <style>
+
+    @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&display=swap');
+
+:root {
+  --orange: #ffa500;
+}
+
+* {
+  font-family: 'Nunito', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-transform: capitalize;
+  outline: none;
+  border: none;
+  text-decoration: none;
+  transition: all 0.2s linear;
+}
+
+::selection {
+  background: var(--orange);
+  color: #fff;
+}
+
+html {
+  font-size: 62.5%;
+  overflow-x: hidden;
+  scroll-padding-top: 6rem;
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+section {
+  padding: 2rem 9%;
+}  
+
+.heading{                          /*here I'll modify the schedule section*/
+  text-align: center;
+  padding: 2.5rem 0;
+}
+
+.heading span{
+  font-size: 3rem;
+  background: rgba(255, 165, 0, .2);
+  color: var(--orange);
+  border-radius: .5rem;
+  padding: .2rem 1rem;              
+}
+
+.heading span.space{
+  background: none;                /*here I'll end modifying the schedule section, see down for more(.heading span fontsize:2.5rem)*/
+}
+              
+
+.btn {
+  display: inline-block;
+  margin-top: 1rem;
+  background: var(--orange);
+  color: #fff;
+  padding: 0.8rem 3rem;
+  border: 0.2rem solid var(--orange);
+  cursor: pointer;
+  font-size: 1.7rem;
+  text-align: center;
+}
+
+.btn:hover {
+  background-color: rgba(255, 165, 0, 0.2);
+  border-color: var(--orange);
+}
+
+/* ---------------- HEADER ---------------- */
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: #333;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem 9%;
+}
+
+header .logo {
+  font-size: 2.5rem;
+  font-weight: bolder;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+header .logo span {
+  color: var(--orange);
+}
+
+
+/* ---------------- HOME ---------------- */
+
+.home {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column;
+  position: relative;
+  z-index: 0;
+  padding: 2rem;
+  text-align: center;
+}
+
+.home .content h3 {
+  font-size: 4.5rem;
+  color: #333;
+  text-transform: uppercase;
+  text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.1);
+}
+
+.home .content p {
+  font-size: 2.5rem;
+  color: #333;
+  padding: 0.5rem 0;
+}
+
+.home .video-container video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+/* Section styling */
+.get-started {
+  position: relative;
+  padding: 70px 20px;
+  text-align: center;
+  background: #f9f9f9;
+  overflow: hidden;
+}
+  </style>
+  
+</head>
+
+<body>
+
+    <header>
+
+
+        <div id="menu-bar" class="fas fa-bars"></div>
+
+    <a href="#" class="logo"><span>Grad</span>project</a>
+    </header>
+
+    
+  <!-- Home section starts -->
+  <section class="home" id="home">
+    <div class="content">
+      <h3>Welcome to graduation project selection</h3>
+      <strong><p>speak your mind and I'll help you find</p></strong>
+      <a href="roles.html" class="btn">get started</a>
+    </div>
+
+    
+
+    <div class="video-container">
+      <video src="select.mp4" id="video-slider" loop autoplay muted></video>
+    </div>
+  </section>           <!-- Home section ends --> 
+</body>
+
+
+
+
+
+
+
+</html>
